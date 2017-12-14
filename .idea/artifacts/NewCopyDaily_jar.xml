@@ -1,8 +1,13 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="NewCopyDaily:jar">
+  <artifact name="NewCopyDaily:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/NewCopyDaily_jar</output-path>
-    <root id="archive" name="NewCopyDaily.jar">
-      <element id="module-output" name="NewCopyDaily" />
+    <root id="root">
+      <element id="archive" name="NewCopyDaily.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/src/main/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="module-output" name="NewCopyDaily" />
+      </element>
     </root>
   </artifact>
 </component>

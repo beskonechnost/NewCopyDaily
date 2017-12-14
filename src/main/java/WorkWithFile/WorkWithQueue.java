@@ -57,12 +57,17 @@ public class WorkWithQueue {
         String path = "C:\\DataForImport";
         File dir = new File(path); //path указывает на директорию
         File[] arrFiles = dir.listFiles();
-        List<File> lst = Arrays.asList(arrFiles);
-        List<String> namesFolder = new ArrayList<String>();
-        for(File f : lst){
-            namesFolder.add(f.getName());
+        if(arrFiles.length==0){
+            List<String> namesFolder = new ArrayList<String>();
+            return namesFolder;
+        }else{
+            List<File> lst = Arrays.asList(arrFiles);
+            List<String> namesFolder = new ArrayList<String>();
+            for(File f : lst){
+                namesFolder.add(f.getName());
+            }
+            return namesFolder;
         }
-        return namesFolder;
     }
 
     //Сравнить содержимое папки с очередью и удалить тае папки, которые были перемещены верно
