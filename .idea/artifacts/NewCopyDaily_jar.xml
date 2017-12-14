@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="NewCopyDaily:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/NewCopyDaily_jar</output-path>
+    <root id="archive" name="NewCopyDaily.jar">
+      <element id="module-output" name="NewCopyDaily" />
+    </root>
+  </artifact>
+</component>
