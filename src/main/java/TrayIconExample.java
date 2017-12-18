@@ -27,8 +27,8 @@ public class TrayIconExample {
                 }
 
                 Date d = new Date();
-                d.setHours(8);
-                d.setMinutes(30);
+                d.setHours(14);
+                d.setMinutes(0);
                 d.setSeconds(0);
                 d.setDate(d.getDate());
 

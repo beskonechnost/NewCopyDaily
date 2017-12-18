@@ -31,4 +31,14 @@ public class ListMonthsOYY {
         }
         return month;
     }
+
+    public static void main(String[] args) {
+        String folderOYY = null;
+        for(MonthFormOYY mon : ListMonthsOYY.getInstance()){
+            if(mon.getNumber().equals("12")){
+                folderOYY = mon.getTextMonth();
+                System.out.println(folderOYY);
+            }
+        }
+    }
 }

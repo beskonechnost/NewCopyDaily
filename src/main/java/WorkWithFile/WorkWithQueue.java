@@ -6,10 +6,7 @@ import Extra.ListMonthsOYY;
 import Extra.MonthFormOYY;
 
 import java.awt.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -20,8 +17,8 @@ import java.util.List;
  */
 public class WorkWithQueue {
 
-    private static final String FILE_NAME ="C:\\MainPawn\\CopyFile\\NumberAndCode";
-    private static final String FILE_QUEUE ="C:\\MainPawn\\CopyFile\\queue";
+    private static final String FILE_NAME ="C:\\mainPawn\\CopyFile\\NumberAndCode";
+    private static final String FILE_QUEUE ="C:\\mainPawn\\CopyFile\\queue";
     private static final String FILE_EXE = "C:\\mainPawn\\CopyFile\\Import_data.exe";
 
     //Записать в очередь информацию о файлах за вчера
@@ -72,17 +69,14 @@ public class WorkWithQueue {
 
     //Сравнить содержимое папки с очередью и удалить тае папки, которые были перемещены верно
     public void CompareQueueAndFilesInDataForImport(List<String> namesFolder, List<AllInformation> queue){
-        for(AllInformation ai : queue){
-            for(String nameFolder : namesFolder){
+        for(String nameFolder : namesFolder){
+            for(AllInformation ai : queue){
                 if(ai.getName().equals(nameFolder)){
                     ai.setCopyMark(true);
+                    AllInformation ai1 = ai;
+                    queue.remove(ai1);
                     break;
                 }
-            }
-        }
-        for(AllInformation ai : queue){
-            if(ai.isCopyMark()){
-                queue.remove(ai);
             }
         }
     }
@@ -91,6 +85,10 @@ public class WorkWithQueue {
     public void WriteQueueInFile(File file, List<AllInformation> queue){
         Writer writer = null;
         try {
+            writer = new FileWriter(file);
+            BufferedWriter out = new BufferedWriter(writer); //  создаём буферезированный поток
+            out.write("");
+            out.close();
             writer = new FileWriter(file);
             for (AllInformation ai : queue) {
                 String line = ai.getLo().getNumberLo()+"-"+ai.getLo().getCodeLo()+"-"+ai.getDataInNeededFormatInString()+"-"+ai.getName()+"-"+ai.getFolderOYY()+"-"+ai.isCopyMark();
@@ -110,9 +108,24 @@ public class WorkWithQueue {
         }
     }
 
-    public void deleteAllFilesFolder(String path) {
-        for (File myFile : new File(path).listFiles())
-            myFile.delete();
+    //delete in folder
+    public void deleteAllFilesFolder(File file) {
+            if(!file.exists())
+                return;
+            if(file.isDirectory())
+            {
+                for(File f : file.listFiles())
+                    deleteAllFilesFolder(f);
+                file.delete();
+            }
+            else
+            {
+                file.delete();
+            }
+        File folder = new File("C:\\DataForImport");
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
     }
 
     //Запустить exe file-загрузчика
@@ -142,12 +155,12 @@ public class WorkWithQueue {
         runExe(FILE_EXE);
         //Ждать 15 минту
         try {
-            wait(900000);
+            Thread.sleep(60000);//900000 - 15 min
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         //Удаляем все из DataForImport
-        deleteAllFilesFolder("C:\\DataForImport\\");
+        deleteAllFilesFolder(new File("C:\\DataForImport\\"));
 
         Date nowDate = new Date();
         if(!((nowDate.getTime()-startDate.getTime())>=36000000)){
