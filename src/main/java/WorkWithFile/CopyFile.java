@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CopyFile {
-    static int count = 0;
 
 
     //работает ок - путь к начальной папкеи указывает на нужный файл.
@@ -27,8 +26,38 @@ public class CopyFile {
     }
 
     public static String getThePathToTheReceiverOYY (String folderName, String nameFile) {
-        String path = null;
-        path = "C:\\.Данные для Импорта\\"+folderName+"\\"+nameFile+"\\";
+        int month = Integer.parseInt(folderName);
+        String monthString;
+        switch (month) {
+            case 1:  monthString = "01_Январь";
+                break;
+            case 2:  monthString = "02_Февраль";
+                break;
+            case 3:  monthString = "03_Март";
+                break;
+            case 4:  monthString = "04_Апрель";
+                break;
+            case 5:  monthString = "05_Май";
+                break;
+            case 6:  monthString = "06_Июнь";
+                break;
+            case 7:  monthString = "07_Июль";
+                break;
+            case 8:  monthString = "08_Август";
+                break;
+            case 9:  monthString = "09_Сентябрь";
+                break;
+            case 10: monthString = "10_Октябрь";
+                break;
+            case 11: monthString = "11_Ноябрь";
+                break;
+            case 12: monthString = "12_Декабрь";
+                break;
+            default: monthString = "Не знаем такого";
+                break;
+        }
+        String path = "C:\\.Данные для Импорта\\"+monthString+"\\"+nameFile+"\\";
+
         return path;
     }
 

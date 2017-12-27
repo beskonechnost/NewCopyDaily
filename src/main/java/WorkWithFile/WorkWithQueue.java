@@ -2,8 +2,6 @@ package WorkWithFile;
 
 import Entity.AllInformation;
 import Entity.LO;
-import Extra.ListMonthsOYY;
-import Extra.MonthFormOYY;
 
 import java.awt.*;
 import java.io.*;
@@ -38,14 +36,9 @@ public class WorkWithQueue {
             CopyFile.unRarFile(CopyFile.getThePathToTheSource(CopyFile.threeGigitNumber(ai.getLo().getNumberLo()),ai.getName()), CopyFile.getThePathToTheReceiver(ai.getName()));
             CopyFile.unRarFile(CopyFile.getThePathToTheSourceY(CopyFile.threeGigitNumber(ai.getLo().getNumberLo()), ai.getName()), CopyFile.getThePathToTheReceiver(ai.getName()));
 
-            String folderOYY = null;
-            for(MonthFormOYY mon : ListMonthsOYY.getInstance()){
-                if(mon.getNumber().equals(ai.getFolderOYY())){
-                    folderOYY = mon.getTextMonth();
-                }
-            }
-            CopyFile.unRarFile(CopyFile.getThePathToTheSource(CopyFile.threeGigitNumber(ai.getLo().getNumberLo()),ai.getName()), CopyFile.getThePathToTheReceiverOYY(folderOYY,ai.getName()));
-            CopyFile.unRarFile(CopyFile.getThePathToTheSourceY(CopyFile.threeGigitNumber(ai.getLo().getNumberLo()), ai.getName()), CopyFile.getThePathToTheReceiverOYY(folderOYY,ai.getName()));
+
+            CopyFile.unRarFile(CopyFile.getThePathToTheSource(CopyFile.threeGigitNumber(ai.getLo().getNumberLo()),ai.getName()), CopyFile.getThePathToTheReceiverOYY(ai.getName().substring(13,15),ai.getName()));
+            CopyFile.unRarFile(CopyFile.getThePathToTheSourceY(CopyFile.threeGigitNumber(ai.getLo().getNumberLo()), ai.getName()), CopyFile.getThePathToTheReceiverOYY(ai.getName().substring(13,15),ai.getName()));
         }
     }
 
