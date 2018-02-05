@@ -1,6 +1,7 @@
 package WorkWithFile;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -57,7 +58,6 @@ public class CopyFile {
                 break;
         }
         String path = "C:\\.Данные для Импорта\\"+monthString+"\\"+nameFile+"\\";
-
         return path;
     }
 
@@ -91,6 +91,24 @@ public class CopyFile {
         return s;
     }
 
+    public static Date getYesterdayDateInFormatFromDB(){
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        Date currentDate = new Date();
+        Long time = currentDate.getTime();
+        long anotherDate = -1;
+        time = time + (60*60*24*1000*anotherDate);
+        currentDate = new Date(time);
+        sdf.applyPattern("dd.MM.yyyy");
+        String s = sdf.format(currentDate);
+        Date d = new Date();
+        try {
+            d = new SimpleDateFormat( "dd.MM.yyyy" ).parse(s);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return d;
+    }
+
     public static String getDateInFormat(Date date){
         SimpleDateFormat sdf = new SimpleDateFormat();
         Date d1 = date;
@@ -118,4 +136,6 @@ public class CopyFile {
             e.printStackTrace();
         }
     }
+
+
 }

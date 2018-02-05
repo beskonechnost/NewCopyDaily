@@ -37,8 +37,8 @@ public class WorkWithQueue {
             CopyFile.unRarFile(CopyFile.getThePathToTheSourceY(CopyFile.threeGigitNumber(ai.getLo().getNumberLo()), ai.getName()), CopyFile.getThePathToTheReceiver(ai.getName()));
 
 
-            CopyFile.unRarFile(CopyFile.getThePathToTheSource(CopyFile.threeGigitNumber(ai.getLo().getNumberLo()),ai.getName()), CopyFile.getThePathToTheReceiverOYY(ai.getName().substring(13,15),ai.getName()));
-            CopyFile.unRarFile(CopyFile.getThePathToTheSourceY(CopyFile.threeGigitNumber(ai.getLo().getNumberLo()), ai.getName()), CopyFile.getThePathToTheReceiverOYY(ai.getName().substring(13,15),ai.getName()));
+            CopyFile.unRarFile(CopyFile.getThePathToTheSource(CopyFile.threeGigitNumber(ai.getLo().getNumberLo()),ai.getName()), CopyFile.getThePathToTheReceiverOYY(ai.getDataInNeededFormatInString().substring(2, 4), ai.getName()));
+            CopyFile.unRarFile(CopyFile.getThePathToTheSourceY(CopyFile.threeGigitNumber(ai.getLo().getNumberLo()), ai.getName()), CopyFile.getThePathToTheReceiverOYY(ai.getDataInNeededFormatInString().substring(2,4),ai.getName()));
         }
     }
 
@@ -60,7 +60,7 @@ public class WorkWithQueue {
         }
     }
 
-    //Сравнить содержимое папки с очередью и удалить тае папки, которые были перемещены верно
+    //Сравнить содержимое папки с очередью и удалить те папки, которые были перемещены верно
     public void CompareQueueAndFilesInDataForImport(List<String> namesFolder, List<AllInformation> queue){
         for(String nameFolder : namesFolder){
             for(AllInformation ai : queue){
@@ -84,7 +84,7 @@ public class WorkWithQueue {
             out.close();
             writer = new FileWriter(file);
             for (AllInformation ai : queue) {
-                String line = ai.getLo().getNumberLo()+"-"+ai.getLo().getCodeLo()+"-"+ai.getDataInNeededFormatInString()+"-"+ai.getName()+"-"+ai.getFolderOYY()+"-"+ai.isCopyMark();
+                String line = ai.getLo().getNumberLo() + "-" + ai.getLo().getCodeLo() + "-" + ai.getDataInNeededFormatInString() + "-" + ai.getName() + "-" + ai.getFolderOYY() + "-" + ai.isCopyMark();
                 writer.write(line);
                 writer.write(System.getProperty("line.separator"));
             }
@@ -155,13 +155,14 @@ public class WorkWithQueue {
         //Удаляем все из DataForImport
         deleteAllFilesFolder(new File("C:\\DataForImport\\"));
 
-        Date nowDate = new Date();
-        if(!((nowDate.getTime()-startDate.getTime())>=36000000)){
-            //Читать из файла в пустую очередь
-            queue = ReadFile.readFileQueue(FILE_QUEUE);
-            if(!queue.isEmpty()){
-                FirstPart(queue,startDate);
+            Date nowDate = new Date();
+            if (!((nowDate.getTime() - startDate.getTime()) >= 36000000)) {
+                //Читать из файла в пустую очередь
+                queue = ReadFile.readFileQueue(FILE_QUEUE);
+                if (!queue.isEmpty()) {
+                    FirstPart(queue, startDate);
+                }
             }
-        }
+
     }
 }

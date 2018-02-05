@@ -1,17 +1,17 @@
 import TimersTasks.TimerTaskDaily;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
+import java.util.Date;
 import java.util.Timer;
 
 /**
  * Created by Андрей on 14.12.2017.
  */
 public class TrayIconExample {
-    public static final String APPLICATION_NAME = "TrayIconExample";
+    public static final String APPLICATION_NAME = "AutoLoader";
     public static final String ICON_STR = "C:\\mainPawn\\CopyFile\\icon.png";
 
     private static java.util.Timer mTimer;
@@ -27,7 +27,7 @@ public class TrayIconExample {
                 }
 
                 Date d = new Date();
-                d.setHours(14);
+                d.setHours(9);
                 d.setMinutes(0);
                 d.setSeconds(0);
                 d.setDate(d.getDate());
@@ -77,7 +77,7 @@ public class TrayIconExample {
             e.printStackTrace();
         }
 
-        trayIcon.displayMessage(APPLICATION_NAME, "Application started!",
+        trayIcon.displayMessage(APPLICATION_NAME, "Auto loader started!",
                 TrayIcon.MessageType.INFO);
     }
 }
